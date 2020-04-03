@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.io.BufferedReader;
@@ -25,18 +26,49 @@ public class AddressAdapter {
         db = helper.getWritableDatabase();
     }
 
+    //--------------------------------------------------------------------------------------------------------------
+
     // リストを取得
     public Cursor getAllList() {
         return db.query(DBOpenHelper.TABLE_NAME, null, null, null, null, null, null);
     }
+    //--------------------------------------------------------------------------------------------------------------
 
-    // 追加(使っていない)
-    public void insert(String memo) {
-        ContentValues values = new ContentValues();
-        values.put("memo", memo);
-        db.insertOrThrow(DBOpenHelper.TABLE_NAME, null, values);
+    // リストを取得
+    public String SearchAddress(String Number) {
+        StringBuilder ResText = new StringBuilder();
+        String str = null;
+
+        try {
+            String selectStr = "PostalCode = ?";        // このあたりの条件を有効にすると検索されない・・・
+            String[] selectArg = new String[]{Number};
+
+            Cursor cursor = db.query(DBOpenHelper.TABLE_NAME, null, selectStr, selectArg, null, null, null);
+
+            while (cursor.moveToNext()) {
+                ResText.append(cursor.getString(7));
+            }
+
+            str = new String(ResText);
+        } catch (Exception e) {
+            e.printStackTrace();
+//        }finally{
+//            db.close();
+        }
+
+        return str;
     }
 
+//    //--------------------------------------------------------------------------------------------------------------
+//    // 追加(使っていない)
+//    public void insert(String memo) {
+//        ContentValues values = new ContentValues();
+//        values.put("memo", memo);
+//        db.insertOrThrow(DBOpenHelper.TABLE_NAME, null, values);
+//
+//    }
+
+//--------------------------------------------------------------------------------------------------------------
     // 追加(郵便番号検索リスト)
     public void insertList(Context context, String fineName) {
         AssetManager assetManager = context.getResources().getAssets();
@@ -74,8 +106,9 @@ public class AddressAdapter {
             }
         } catch (Exception e) {
             e.printStackTrace();
+
+        } finally {
+            db.close();
         }
     }
-
-
 }
