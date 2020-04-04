@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //リスト更新
-        Address.insertList(this, "x-ken-all.csv");//これを有効化すると5分以上起動にかかるようになります。
+        //Address.insertList(this, "Address.csv");
     }
 
     public void onClickSearchAddress(View view)
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textview = (TextView)findViewById(R.id.inputAddressNumber);
         String text = textview.getText().toString();
-        String Res = Address.SearchAddress2(text);
+        String Res = Address.SearchAddress(text);
 
         TextView lblList = (TextView)this.findViewById(R.id.textView3Id);
         lblList.setText(Res);
