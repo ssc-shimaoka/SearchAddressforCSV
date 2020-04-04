@@ -1,6 +1,7 @@
 package com.example.searchaddress;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,16 +25,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //リスト更新
-        //Address.insertList(this, "x-ken-all.csv");　　//これを有効化すると5分以上起動にかかるようになります。
+        Address.insertList(this, "x-ken-all.csv");//これを有効化すると5分以上起動にかかるようになります。
     }
 
     public void onClickSearchAddress(View view)
     {
+
         TextView textview = (TextView)findViewById(R.id.inputAddressNumber);
         String text = textview.getText().toString();
-        String Res = Address.SearchAddress(text);
+        String Res = Address.SearchAddress2(text);
 
         TextView lblList = (TextView)this.findViewById(R.id.textView3Id);
         lblList.setText(Res);
+
     }
 }
