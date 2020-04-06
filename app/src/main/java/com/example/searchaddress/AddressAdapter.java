@@ -24,17 +24,16 @@ public class AddressAdapter {
         db = helper.getWritableDatabase();
     }
 
-    //--------------------------------------------------------------------------------------------------------------
-
-    // リストを取得
+//--------------------------------------------------------------------------------------------------------------
+// リストを取得
     public Cursor getAllList() {
         return db.query(DBOpenHelper.TABLE_NAME, null, null, null, null, null, null);
     }
 
 //--------------------------------------------------------------------------------------------------------------
-
-    public String SearchAddress(String text) {
-        String Resault = new String();
+// 検索処理
+    public String[] SearchAddress(String text) {
+        String[] Resault = new String[3];
 
         //queryメソッドでデータを取得
         //String[] cols = {"No", "Name", "Tel", "Age"};
@@ -49,29 +48,20 @@ public class AddressAdapter {
             //TextViewに表示
 
             cursor.moveToFirst();
-            Resault = cursor.getString(6);
-            //Log.d("debug","db data=" + text2);
+            Resault[0] = cursor.getString(6);
+            Resault[1] = cursor.getString(7);
+            Resault[2] = cursor.getString(8);
 
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            db.close();
+ //       }finally {
+ //           db.close();
         }
         return Resault;
     }
 
-
-//    //--------------------------------------------------------------------------------------------------------------
-//    // 追加(使っていない)
-//    public void insert(String memo) {
-//        ContentValues values = new ContentValues();
-//        values.put("memo", memo);
-//        db.insertOrThrow(DBOpenHelper.TABLE_NAME, null, values);
-//
-//    }
-
-//--------------------------------------------------------------------------------------------------------------
-    // 追加(郵便番号検索リスト)
+//---------------------------------------------------------------------------------------------
+// 追加(郵便番号検索CSVインポート)
     public void insertList(Context context, String fineName) {
         AssetManager assetManager = context.getResources().getAssets();
 

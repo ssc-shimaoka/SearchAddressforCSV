@@ -6,47 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/inputAddressNumber"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="132dp"
-        android:ems="10"
-        android:inputType="number"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3Id"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/SearchAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="110dp"
+        android:layout_height="62dp"
+        android:background="@android:drawable/btn_plus"
         android:onClick="onClickSearchAddress"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputAddressNumber"
-        app:layout_constraintVertical_bias="0.986" />
-
-    <TextView
-        android:id="@+id/textView3Id"
-        android:layout_width="330dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="439dp"
+        android:textAlignment="viewStart"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputAddressNumber" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.917" />
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/addressNumberText"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/inputAddressNumber"
+            android:layout_width="match_parent"
+            android:layout_height="93dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/inputHintText"
+            android:inputType="number"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/AddressText"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/outputAddress1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:ems="10"
+            android:hint="@string/outputHintText1"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/outputAddress2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:ems="10"
+            android:hint="@string/outputHintText2"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/outputAddress3"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:ems="10"
+            android:hint="@string/outputHintText3"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:textSize="30sp" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/UpdateData"
+        android:layout_width="92dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="40dp"
+        android:background="@android:drawable/ic_dialog_info"
+        android:onClick="onClickUpdateData"
+        android:text="@string/update"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/SearchAddress"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

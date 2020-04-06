@@ -24,19 +24,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //リスト更新
-        //Address.insertList(this, "Address.csv");
+
     }
 
     public void onClickSearchAddress(View view)
     {
-
+        // 検索入力文字
         TextView textview = (TextView)findViewById(R.id.inputAddressNumber);
         String text = textview.getText().toString();
-        String Res = Address.SearchAddress(text);
 
-        TextView lblList = (TextView)this.findViewById(R.id.textView3Id);
-        lblList.setText(Res);
+        // 検索処理
+        String[] Result = Address.SearchAddress(text);
 
+        // 県表示
+        TextView lblList1 = (TextView)this.findViewById(R.id.outputAddress1);
+        lblList1.setText(Result[0]);
+
+        // 市町村表示
+        TextView lblList2 = (TextView)this.findViewById(R.id.outputAddress2);
+        lblList2.setText(Result[1]);
+
+        // 番地表示
+        TextView lblList3 = (TextView)this.findViewById(R.id.outputAddress3);
+        lblList3.setText(Result[2]);
+    }
+
+    public void onClickUpdateData(View view)
+    {
+        //リスト更新
+        Address.insertList(this, "Address.csv");
     }
 }
